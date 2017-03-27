@@ -1,0 +1,140 @@
+<!--#include file="common/header.html"-->
+
+<body>
+    <div class="container-fluid larry-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <!--头部搜索-->
+                <section class="panel panel-padding">
+                    <form class="layui-form" action="/php/data.php">
+                        <div class="layui-form">
+                            <div class="layui-inline">
+                                <select name="city" lay-verify="required">
+                                    <option value="0">请选择地区</option>
+                                    <option value="010">北京</option>
+                                    <option value="021">上海</option>
+                                    <option value="0571">杭州</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input start-date" name="start_date" placeholder="注册时间">
+                                </div>
+                                <div class="layui-input-inline">
+                                    <input class="layui-input end-date" name="end_date" placeholder="注册时间">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" name="keyword" placeholder="关键字">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button lay-submit class="layui-btn" lay-filter="search">查找</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!--列表-->
+                <section class="panel panel-padding">
+                    <div class="group-button">
+                        <button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&checkbox=6,9,0&va=23"}'>
+                            <i class="iconfont">&#xe626;</i> 删除
+                        </button>
+                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&checkbox=6,9,0&va=23"}'>
+                            <i class="layui-icon">&#x1005;</i> 审核
+                        </button>
+                        <button class="layui-btn layui-btn-small modal-catch" data-params='{"content": ".add-subcat", "title": "添加会员","type":"1","area":"700px,auto"}'>
+                            <i class="iconfont">&#xe649;</i> 添加
+                        </button>
+                    </div>
+                    <div id="list" class="layui-form"></div>
+
+                    <div class="text-right" id="page"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-subcat">
+        <form id="form1" class="layui-form layui-form-pane" action="add-brand">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" required jq-verify="required" jq-error="请输入姓名" jq-url="/php/check.php" placeholder="请输入姓名" autocomplete="off" class="layui-input ">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-inline">
+                    <select name="city" jq-verify="required" jq-error="请选择地区" lay-filter="verify">
+                        <option value=""></option>
+                        <option value="0">北京</option>
+                        <option value="1">上海</option>
+                        <option value="2">广州</option>
+                        <option value="3">深圳</option>
+                        <option value="4">杭州</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传头像</label>
+                <div class="layui-input-block">
+                    <input type="file" name="file" class="layui-upload-file">
+                    <input type="hidden" name="img" jq-verify="required" jq-error="请上传头像" error-id="img-error">
+                    <p id="img-error" class="error"></p>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sorts" jq-verify="phone" jq-error="手机号码格式不对" placeholder="请输入手机号码" autocomplete="off" class="layui-input ">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sorts" required jq-verify="email" jq-error="邮箱格式不对" placeholder="请输入邮箱" autocomplete="off" class="layui-input ">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" title="男" value="1" checked />
+                    <input type="radio" name="sex" title="女" value="0" />
+                    <input type="radio" name="sex" title="保密" value="2" />
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="status" title="启用" value="1" checked />
+                    <input type="radio" name="status" title="禁用" value="0" />
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+<!--#include file="tpl/member.html"-->
+<script src="js/layui/layui.js"></script>
+<!--#include file="common/version.html"-->
+<script>
+    layui.use('list');
+</script>
+
+</html>

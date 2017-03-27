@@ -1,0 +1,76 @@
+<!--#include file="common/header.html"-->
+
+<body>
+    <div class="container-fluid larry-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <section class="panel panel-padding">
+                    <form id="form1" class="layui-form layui-form-pane" action="/php/test.php">
+                        <div class="layui-form-item ">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">角色名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" required jq-verify="username|number" jq-error="请输入标题|请输入数字" placeholder="请输入标题" autocomplete="off" class="layui-input ">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">描述</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title2" placeholder="对角的描述" autocomplete="off" class="layui-input ">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item permission-list">
+                                <label class="layui-form-label">拥有权限</label>
+                                <div class="layui-input-block">
+                                    <ul>
+                                        <li><input type="checkbox" name="status1" value="1" title="内容管理" lay-filter="role" />
+                                            <dl> <input type="checkbox" name="status2" value="1" title="文章管理" lay-filter="role" />
+                                                <dd><input type="checkbox" name="status3" value="1" title="文章列表" lay-filter="role" /></dd>
+                                                <dd><input type="checkbox" name="status4" value="1" title="文章分类" lay-filter="role" /></dd>
+                                                <dd><input type="checkbox" name="status5" value="1" title="TAG标签" lay-filter="role" /></dd>
+                                            </dl>
+                                            <dl> <input type="checkbox" name="status6" value="1" title="文章管理1" lay-filter="role" />
+                                                <dd><input type="checkbox" name="status7" value="1" title="文章列表1" lay-filter="role" /></dd>
+                                                <dd><input type="checkbox" name="status8" value="1" title="文章分类1" lay-filter="role" /></dd>
+                                                <dd><input type="checkbox" name="status9" value="1" title="TAG标签1" lay-filter="role" /></dd>
+                                            </dl>
+                                        </li>
+                                        <li><input type="checkbox" name="status10" value="1" title="产品管理" lay-filter="role" />
+                                            <dl><input type="checkbox" name="status11" value="1" title="产品列表" lay-filter="role" /></dl>
+                                            <dl><input type="checkbox" name="status12" value="1" title="产品分类" lay-filter="role" /></dl>
+                                            <dl><input type="checkbox" name="status13" value="1" title="品牌管理" lay-filter="role" /></dl>
+                                        </li>
+
+                                        <li><input type="checkbox" name="status14" value="1" title="会员管理" lay-filter="role" />
+                                            <dl> <input type="checkbox" name="status15" value="1" title="会员管理" lay-filter="role" />
+                                                <dd><input type="checkbox" name="status16" value="1" title="会员列表" lay-filter="role" /></dd>
+                                                <dd><input type="checkbox" name="status17" value="1" title="会员等级" lay-filter="role" /></dd>
+                                                <dd><input type="checkbox" name="status18" value="1" title="会员 统计" lay-filter="role" /></dd>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="js/layui/layui.js"></script>
+<!--#include file="common/version.html"-->
+<script>
+    layui.use('role');
+</script>
+
+</html>

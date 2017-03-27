@@ -1,0 +1,39 @@
+<script id="list-tpl" type="text/html" data-params='{"url":"/php/data.php","pageid":"#page"}'>
+    <table id="example" class="layui-table lay-even">
+        <thead>
+            <tr>
+                <th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check" lay-skin="primary"></th>
+                <th width="60">序号</th>
+                <th width="100">LOGO</th>
+                <th>名称</th>
+                <th width="70">排序</th>
+                <th width="80">审核</th>
+                <th width="142">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{# layui.each(d.list, function(index, item){ }}
+            <tr>
+                <td><input type="checkbox" name="checkbox" value="{{ item.id}}" lay-skin="primary"></td>
+                <td>{{ item.id}}</td>
+                <td>
+                    <div class="img"> <img src="images/upload.jpg" alt="..." class="img-thumbnail"> </div>
+
+                </td>
+                <td>{{ item.title}}</td>
+                <td><input type="text" class="layui-input ajax-blur" name="order" value="{{ item.id}}" data-params='{"url":"/php/test.php","data":"id=1&name=paco"}'> </td>
+                <td><input type="checkbox" name="switch" lay-skin="switch" lay-text="已审|待审" {{#if (item.switch){ }}checked="checked" {{# } }} lay-filter="ajax" data-params='{"url":"/php/test.php","data":"id={{ item.id}}&name=paco"}'> </td>
+                <td>
+                    <button class="layui-btn layui-btn-mini modal-catch" data-params='{"content": ".add-subcat", "title": "编辑{{item.title}}","type":"1","data":"title={{ item.title}}&city=1&sorts=10&status=0&url=abc.html"}'>
+                        <i class="iconfont">&#xe653;</i>编辑
+                    </button>
+                    <button class="layui-btn layui-btn-mini layui-btn-danger ajax" data-params='{"url": "/php/test.php","data":"id=1&name=ni"}'>
+                        <i class="iconfont">&#xe626;</i>删除
+                    </button></td>
+                </td>
+            </tr>
+            {{# }); }}
+        </tbody>
+
+    </table>
+</script>

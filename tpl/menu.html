@@ -1,0 +1,42 @@
+<script id="menu-tpl" type="text/html" data-params='{"url":"/php/menu.json","listid":"menu","icon":"true"}'>
+    {{# layui.each(d.list, function(index, item){ }}
+    <li class="layui-nav-item {{# if(index==0){ }}layui-this{{# } }}">
+        <a href="javascript:;" data-title="{{item.name}}"><i class="iconfont">{{item.iconfont}}</i><span>{{item.name}}</span></a>
+    </li>
+    {{# }); }}
+</script>
+
+<script id="submenu-tpl" type="text/html">
+    {{# layui.each(d.list, function(index, menu){ }}
+    <div class="sub-menu">
+        <ul class="layui-nav layui-nav-tree">
+            {{# layui.each(menu.sub, function(index, submenu){ }} {{# if(submenu.sub && submenu.sub.length>0){ }}
+            <li class="layui-nav-item" data-bind="0">
+                <a href="javascript:;" data-title="{{submenu.name}}">
+                    <i class="iconfont">{{submenu.iconfont}}</i>
+                    <span>{{submenu.name}}</span>
+                    <em class="layui-nav-more"></em>
+                </a>
+                <dl class="layui-nav-child">
+                    {{# layui.each(submenu.sub, function(index, secMenu){ }}
+                    <dd>
+                        <a href="javascript:;" data-url="{{secMenu.url}}" data-title="{{secMenu.name}}">
+                            <i class="iconfont " data-icon='{{secMenu.iconfont}}'>{{secMenu.iconfont}}</i>
+                            <span>{{secMenu.name}}</span>
+                        </a>
+                    </dd>
+                    {{# }); }}
+                </dl>
+            </li>
+            {{# }else{ }}
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-url="{{submenu.url}}" data-title="{{submenu.name}}">
+                    <i class="iconfont" data-icon='{{submenu.iconfont}}'>{{submenu.iconfont}}</i>
+                    <span>{{submenu.name}}</span>
+                </a>
+            </li>
+            {{# } }} {{# }); }}
+        </ul>
+    </div>
+    {{# }); }}
+</script>

@@ -1,0 +1,77 @@
+<!--#include file="common/header.html"-->
+
+<body>
+    <div class="container-fluid larry-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <!--头部搜索-->
+                <section class="panel panel-padding">
+                    <form class="layui-form" action="/php/data.php">
+                        <div class="layui-form">
+                            <div class="layui-inline">
+                                <select name="city" lay-verify="required">
+                                    <option value="0">请选择分类</option>
+                                    <option value="010">北京</option>
+                                    <option value="021">上海</option>
+                                    <option value="0571">杭州</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="status" lay-verify="required">
+                                    <option value="021">上架</option>
+                                    <option value="0571">下架</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input start-date" name="start_date" placeholder="开始日">
+                                </div>
+                                <div class="layui-input-inline">
+                                    <input class="layui-input end-date" name="end_date" placeholder="截止日">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" name="keyword" placeholder="关键字">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button lay-submit class="layui-btn" lay-filter="search">查找</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!--列表-->
+                <section class="panel panel-padding">
+                    <div class="group-button">
+                        <button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&checkbox=6,9,0&va=23"}'>
+                            <i class="iconfont">&#xe626;</i> 删除
+                        </button>
+                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&checkbox=6,9,0&va=23"}'>
+                            <i class="iconfont">&#xe603;</i> 上架
+                        </button>
+                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&checkbox=6,9,0&va=23"}'>
+                            <i class="layui-icon">&#x1005;</i> 审核
+                        </button>
+                        <button class="layui-btn layui-btn-small modal-iframe" data-params='{"content": "product-add.html", "title": "添加文章","full":"true"}'>
+                            <i class="iconfont">&#xe649;</i> 添加
+                        </button>
+                    </div>
+                    <div id="list" class="layui-form"></div>
+
+                    <div class="text-right" id="page"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</body>
+<!--#include file="tpl/product.html"-->
+<script src="js/layui/layui.js"></script>
+<!--#include file="common/version.html"-->
+<script>
+    layui.use('list');
+</script>
+
+</html>

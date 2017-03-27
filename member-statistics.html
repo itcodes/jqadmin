@@ -1,0 +1,123 @@
+<!--#include file="common/header.html"-->
+
+<body>
+    <div class="container-fluid larry-wrapper">
+        <!--顶部统计数据预览 -->
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <section class="panel">
+                    <div class="symbol bgcolor-blue"> <i class="iconfont">&#xe672;</i>
+                    </div>
+                    <div class="value">
+                        <a href="#">
+                            <h1>10</h1>
+                        </a>
+                        <p>会员总数</p>
+                    </div>
+                </section>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <section class="panel">
+                    <div class="symbol bgcolor-commred"> <i class="iconfont">&#xe674;</i>
+                    </div>
+                    <div class="value">
+                        <a href="#">
+                            <h1>10</h1>
+                        </a>
+                        <p>今日注册</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <section class="panel">
+                    <div class="symbol bgcolor-dark-green"> <i class="iconfont">&#xe6bc;</i>
+                    </div>
+                    <div class="value">
+                        <a href="#">
+                            <h1>10</h1>
+                        </a>
+                        <p>男性会员</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <section class="panel">
+                    <div class="symbol bgcolor-yellow-green"> <i class="iconfont">&#xe649;</i>
+                    </div>
+                    <div class="value">
+                        <a href="#">
+                            <h1>10</h1>
+                        </a>
+                        <p>女性会员</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <section class="panel">
+                    <div class="symbol bgcolor-orange"> <i class="iconfont">&#xe638;</i>
+                    </div>
+                    <div class="value">
+                        <a href="#">
+                            <h1>10</h1>
+                        </a>
+                        <p>活跃会员</p>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <section class="panel">
+                    <div class="panel-heading">
+                        男女统计
+                        <a href="javascript:;" class="pull-right panel-toggle"><i class="iconfont">&#xe604;</i></a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="echarts" id="afbces"></div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+
+                <section class="panel">
+                    <div class="panel-heading">
+                        地区统计
+                        <a href="javascript:;" class="pull-right panel-toggle"><i class="iconfont">&#xe604;</i></a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="echarts" id="area"></div>
+                    </div>
+                </section>
+            </div>
+
+
+            <div class="col-xs-12 col-md-6">
+
+                <section class="panel">
+                    <div class="panel-heading">
+                        周活跃度
+                        <a href="javascript:;" class="pull-right panel-toggle"><i class="iconfont">&#xe604;</i></a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="echarts" id="actived"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="js/layui/layui.js"></script>
+<!--#include file="common/version.html"-->
+<script>
+    layui.use(['member']);
+</script>
+
+</html>

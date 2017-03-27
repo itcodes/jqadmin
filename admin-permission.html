@@ -1,0 +1,133 @@
+<!--#include file="common/header.html"-->
+
+<body>
+    <div class="container-fluid larry-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <!--头部搜索-->
+                <section class="panel panel-padding">
+                    <form class="layui-form" action="/php/data.php">
+                        <div class="layui-form">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" name="keyword" placeholder="关键字">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button lay-submit class="layui-btn" lay-filter="search">查找</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!--列表-->
+                <section class="panel panel-padding">
+                    <div class="group-button">
+                        <button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&checkbox=6,9,0&va=23"}'>
+                            <i class="iconfont">&#xe626;</i> 删除
+                        </button>
+
+                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&checkbox=6,9,0&va=23"}'>
+                            <i class="layui-icon">&#x1005;</i> 状态
+                        </button>
+                        <button class="layui-btn layui-btn-small modal-catch" data-params='{"content":".add-subcat", "title":"添加顶级分类","type":"1"}'>
+                            <i class="iconfont">&#xe649;</i> 添加
+                        </button>
+                    </div>
+                    <div id="list" class="layui-form"></div>
+
+                    <div class="text-right" id="page"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="add-subcat">
+        <form id="form1" class="layui-form layui-form-pane" action="add-cat">
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" required jq-verify="required" jq-error="请输入权限名称" placeholder="请输入权限名称" autocomplete="off" class="layui-input ">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">对应的ACTION</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" placeholder="对应的ACTION" autocomplete="off" class="layui-input ">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">附加条件</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" placeholder="附加条件" autocomplete="off" class="layui-input ">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="status" title="启用" value="1" checked />
+                    <input type="radio" name="status" title="禁用" value="0" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script id="list-tpl" type="text/html" data-params='{"url":"/php/data.php","pageid":"#page"}'>
+    <table id="example" class="layui-table lay-even">
+        <thead>
+            <tr>
+                <th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check" lay-skin="primary"></th>
+                <th width="60">序号</th>
+                <th>权限名称</th>
+                <th>对应的ACTION</th>
+                <th>附加条件</th>
+                <th width="80">状态</th>
+                <th width="240">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{# layui.each(d.list, function(index, item){ }}
+            <tr>
+                <td><input type="checkbox" name="checkbox" value="{{ item.id}}" lay-skin="primary"></td>
+                <td>{{ item.id}}</td>
+                <td>{{ strRepeat('&nbsp;&nbsp;',item.id)}} {{# if(item.id>1){ }} ├&nbsp; {{# } }} {{ item.title}}</td>
+                <td>/home/good/index </td>
+                <th>附加条件</th>
+                <td><input type="checkbox" name="switch" lay-skin="switch" lay-text="启用|禁用" {{#if (item.switch){ }}checked="checked" {{# } }} lay-filter="ajax" data-params='{"url":"/php/test.php","data":"id={{ item.id}}&name=paco"}'> </td>
+                <td>
+                    <button class="layui-btn layui-btn-mini layui-btn-normal modal-catch" data-params='{"content":".add-subcat","area":"600px,300px","title":"添加{{ item.title}}的子分类","type":"1"}'>
+                        <i class="iconfont">&#xe649;</i>添加子项
+                    </button>
+                    <button class="layui-btn layui-btn-mini modal-catch" data-params='{"content": ".add-subcat","area":"600px,400px","title":"编辑{{ item.title}}分类","data":"pid=2&status=0&title=123","type":"1"}'>
+                        <i class="iconfont">&#xe653;</i>编辑
+                    </button>
+                    <button class="layui-btn layui-btn-mini layui-btn-danger ajax" data-params='{"url": "/php/test.php","data":"id=1&name=ni"}'>
+                        <i class="iconfont">&#xe626;</i>删除
+                    </button></td>
+                </td>
+            </tr>
+            {{# }); }}
+        </tbody>
+
+    </table>
+</script>
+<script src="js/layui/layui.js"></script>
+<!--#include file="common/version.html"-->
+<script>
+    layui.use('list');
+
+    function strRepeat(str, count) {
+        var ret = "";
+        for (var i = 0; i < count; i++) {
+            ret += str;
+        }
+        return ret;
+    }
+</script>
+
+</html>
